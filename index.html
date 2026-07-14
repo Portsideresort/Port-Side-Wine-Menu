@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#17090d" />
+    <meta name="description" content="Port Side Resort Hotel wine collection in German, English, Turkish and Russian." />
+    <meta property="og:title" content="Port Side Resort Hotel | Wine Menu" />
+    <meta property="og:description" content="A curated wine collection in four languages." />
+    <meta property="og:image" content="assets/wine-cellar-hero.jpg" />
+    <title>Wine Menu | Port Side Resort Hotel</title>
+    <link rel="icon" href="assets/port-side-logo-small.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <a class="skip-link" href="#wine-list" id="skip-link">Alle Weine</a>
+
+      <header class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/wine-cellar-hero.jpg" alt="" />
+          <div class="hero-scrim"></div>
+        </div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-frame" aria-hidden="true"></div>
+
+        <div class="topbar">
+          <div class="brand-lockup" aria-label="Port Side Resort Hotel">
+            <img src="assets/port-side-logo-small.jpg" alt="Port Side Resort Hotel" />
+          </div>
+
+          <nav class="language-switcher" aria-label="Language selection">
+            <button type="button" class="active" data-lang="de" aria-pressed="true" aria-label="Deutsch"><span>DE</span><small>Deutsch</small></button>
+            <button type="button" data-lang="en" aria-pressed="false" aria-label="English"><span>EN</span><small>English</small></button>
+            <button type="button" data-lang="tr" aria-pressed="false" aria-label="Türkçe"><span>TR</span><small>Türkçe</small></button>
+            <button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский"><span>RU</span><small>Русский</small></button>
+          </nav>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-monogram" aria-hidden="true"><span>PS</span></div>
+          <p class="eyebrow">PORT SIDE RESORT HOTEL</p>
+          <div class="ornament" aria-hidden="true"><span></span><i>◆</i><span></span></div>
+          <h1 id="hero-title">Weinkarte</h1>
+          <p class="hero-subtitle" id="hero-subtitle">Eine kuratierte Auswahl für besondere Momente</p>
+        </div>
+
+        <div class="hero-vintage" aria-hidden="true"><span>EST.</span><strong>★★★★★</strong></div>
+        <a class="scroll-cue" href="#collection-title" aria-label="Weinkarte"><span></span></a>
+      </header>
+
+      <main>
+        <section class="intro-section" aria-labelledby="collection-title">
+          <p class="section-kicker">PORT SIDE COLLECTION</p>
+          <h2 id="collection-title">Weinkarte</h2>
+          <p id="intro-copy">Entdecken Sie unsere sorgfältig zusammengestellte Kollektion. Flaschen, Jahrgänge und Preise werden in der nächsten Phase ergänzt.</p>
+        </section>
+
+        <div class="category-wrap">
+          <nav class="category-nav" aria-label="Wine categories" id="category-nav">
+            <button type="button" class="active" data-category="all" aria-pressed="true">Alle Weine</button>
+            <button type="button" data-category="sparkling" aria-pressed="false">Schaumwein</button>
+            <button type="button" data-category="white" aria-pressed="false">Weißwein</button>
+            <button type="button" data-category="rose" aria-pressed="false">Roséwein</button>
+            <button type="button" data-category="red" aria-pressed="false">Rotwein</button>
+            <button type="button" data-category="dessert" aria-pressed="false">Dessertwein</button>
+          </nav>
+        </div>
+
+        <section class="wine-grid" id="wine-list" aria-live="polite"></section>
+
+        <section class="recommendation">
+          <div class="recommendation-mark" aria-hidden="true"><span></span><b>PS</b><span></span></div>
+          <h2 id="guidance-title">Eine Empfehlung gewünscht?</h2>
+          <p id="guidance-copy">Unser Serviceteam hilft Ihnen gerne, den passenden Wein für Ihren Abend auszuwählen.</p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-brand"><span>PORT SIDE</span><small>RESORT HOTEL · ★★★★★</small></div>
+        <p id="footer-copy">Genuss mit Verantwortung</p>
+      </footer>
+    </div>
+  </body>
+</html>
