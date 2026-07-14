@@ -151,27 +151,10 @@ button {
   z-index: 5;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 24px;
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.brand-lockup {
-  display: grid;
-  place-items: center;
-  width: 190px;
-  height: 132px;
-  overflow: visible;
-}
-
-.brand-lockup img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 18px 26px rgba(0, 0, 0, 0.58))
-    drop-shadow(0 0 16px rgba(202, 165, 93, 0.12));
 }
 
 .language-switcher {
@@ -231,27 +214,14 @@ button {
   text-align: center;
 }
 
-.hero-monogram {
-  display: grid;
-  place-items: center;
-  width: 78px;
-  height: 78px;
-  margin-bottom: 24px;
-  border: 1px solid rgba(236, 214, 155, 0.72);
-  color: var(--gold-bright);
-  background: rgba(14, 6, 8, 0.52);
-  box-shadow:
-    inset 0 0 0 5px rgba(202, 165, 93, 0.08),
-    0 18px 55px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(10px);
-  transform: rotate(45deg);
-}
-
-.hero-monogram span {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.08rem;
-  letter-spacing: 0.08em;
-  transform: rotate(-45deg);
+.hero-center-logo {
+  width: clamp(210px, 28vw, 310px);
+  height: clamp(126px, 18vw, 188px);
+  margin-bottom: 10px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 24px 34px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 18px rgba(236, 214, 155, 0.15));
 }
 
 .eyebrow,
@@ -466,9 +436,10 @@ button {
 
 main {
   background:
-    radial-gradient(circle at 20% 30%, rgba(117, 32, 46, 0.18), transparent 32%),
-    radial-gradient(circle at 84% 70%, rgba(202, 165, 93, 0.07), transparent 28%),
-    #12090c;
+    radial-gradient(circle at 20% 30%, rgba(117, 32, 46, 0.28), transparent 32%),
+    radial-gradient(circle at 84% 70%, rgba(202, 165, 93, 0.08), transparent 28%),
+    linear-gradient(rgba(14, 6, 9, 0.94), rgba(14, 6, 9, 0.97)),
+    url("assets/wine-pour-hero-v2.jpg") center top / cover fixed;
 }
 
 .wine-card {
@@ -844,31 +815,87 @@ main {
   border-bottom: 1px solid rgba(202, 165, 93, 0.15);
   color: var(--cream);
   transition: background 180ms ease;
+  cursor: pointer;
 }
 
 .menu-item:nth-child(odd) {
   border-right: 1px solid rgba(202, 165, 93, 0.15);
 }
 
-.menu-item:hover {
+.menu-item:hover,
+.menu-item:focus-visible {
   background: rgba(202, 165, 93, 0.055);
+  outline: 1px solid rgba(236, 214, 155, 0.45);
+  outline-offset: -5px;
 }
 
-.menu-item-mark {
+.wine-image-button {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(236, 214, 155, 0.35);
-  border-radius: 50%;
+  width: 68px;
+  height: 82px;
+  overflow: hidden;
+  border: 1px solid rgba(236, 214, 155, 0.2);
+  border-radius: 34px 34px 8px 8px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(236, 214, 155, 0.13), transparent 45%),
+    rgba(7, 3, 5, 0.38);
+  box-shadow: inset 0 0 22px rgba(202, 165, 93, 0.05);
 }
 
-.menu-item-mark span {
-  width: 8px;
-  height: 13px;
-  border: 1px solid var(--gold);
-  border-radius: 50% 50% 42% 42%;
-  transform: rotate(18deg);
+.wine-image-button img {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 7px rgba(0, 0, 0, 0.55));
+  transition: transform 180ms ease;
+}
+
+.menu-item:hover .wine-image-button img,
+.menu-item:focus-visible .wine-image-button img {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.bottle-placeholder {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 54px;
+  border-radius: 8px 8px 5px 5px;
+  background: linear-gradient(90deg, #220c12, #771c2c 42%, #240c12);
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.48);
+}
+
+.bottle-placeholder::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 7px;
+  width: 7px;
+  height: 21px;
+  border-radius: 2px 2px 0 0;
+  background: #2b0c13;
+}
+
+.bottle-placeholder i {
+  position: absolute;
+  top: 21px;
+  left: 2px;
+  width: 16px;
+  height: 19px;
+  border: 1px solid rgba(75, 16, 27, 0.25);
+  background: linear-gradient(135deg, #f4e7c4, #cda75d);
+}
+
+.detail-hint {
+  display: block;
+  margin-top: 8px;
+  color: rgba(236, 214, 155, 0.46);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .wine-brand {
@@ -963,7 +990,7 @@ main {
   color: var(--cream);
   background:
     linear-gradient(180deg, rgba(15, 7, 9, 0.74), rgba(15, 7, 9, 0.93)),
-    url("assets/wine-cellar-hero.jpg") center 62% / cover no-repeat;
+    url("assets/wine-pour-hero-v2.jpg") center 62% / cover no-repeat;
   box-shadow: inset 0 24px 80px rgba(0, 0, 0, 0.54);
   text-align: center;
 }
@@ -1020,6 +1047,195 @@ footer {
   color: rgba(245, 239, 227, 0.55);
   border-top: 1px solid rgba(202, 165, 93, 0.17);
   background: #0d0608;
+}
+
+.wine-dialog {
+  width: min(920px, calc(100vw - 32px));
+  max-height: min(760px, calc(100vh - 32px));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(236, 214, 155, 0.58);
+  color: var(--cream);
+  background: #160a0e;
+  box-shadow: 0 45px 130px rgba(0, 0, 0, 0.78), inset 0 0 0 7px rgba(202, 165, 93, 0.035);
+}
+
+.wine-dialog[open] {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+  animation: dialog-rise 220ms ease-out;
+}
+
+.wine-dialog::backdrop {
+  background: rgba(6, 2, 4, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+.dialog-close {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(236, 214, 155, 0.4);
+  border-radius: 50%;
+  color: var(--cream);
+  background: rgba(11, 4, 7, 0.72);
+  cursor: pointer;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.dialog-close:hover,
+.dialog-close:focus-visible {
+  color: var(--wine-deep);
+  background: var(--gold-bright);
+  outline: none;
+}
+
+.dialog-visual {
+  display: grid;
+  place-items: center;
+  min-height: 560px;
+  padding: 48px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.05), transparent 34%),
+    radial-gradient(circle at 50% 42%, rgba(236, 214, 155, 0.18), transparent 44%),
+    linear-gradient(155deg, #6d3940, #2b1219 55%, #13080b);
+}
+
+.dialog-visual img {
+  width: 100%;
+  height: 460px;
+  object-fit: contain;
+  filter: drop-shadow(0 34px 25px rgba(0, 0, 0, 0.62));
+}
+
+.bottle-placeholder-large {
+  width: 70px;
+  height: 300px;
+  border-radius: 24px 24px 14px 14px;
+}
+
+.bottle-placeholder-large::before {
+  top: -92px;
+  left: 24px;
+  width: 23px;
+  height: 100px;
+}
+
+.bottle-placeholder-large i {
+  top: 112px;
+  left: 7px;
+  width: 56px;
+  height: 86px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 62px clamp(36px, 6vw, 72px) 52px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(202, 165, 93, 0.09), transparent 36%),
+    linear-gradient(145deg, #2b1219, #12080b 70%);
+}
+
+.dialog-kicker,
+.dialog-category {
+  color: var(--gold);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.dialog-kicker {
+  margin: 0 0 18px;
+}
+
+.dialog-content h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.dialog-category {
+  margin: 18px 0 30px;
+  color: var(--gold-bright);
+}
+
+.wine-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid rgba(202, 165, 93, 0.2);
+  border-left: 1px solid rgba(202, 165, 93, 0.2);
+}
+
+.wine-facts div {
+  min-height: 100px;
+  padding: 18px;
+  border-right: 1px solid rgba(202, 165, 93, 0.2);
+  border-bottom: 1px solid rgba(202, 165, 93, 0.2);
+}
+
+.wine-facts dt {
+  margin-bottom: 9px;
+  color: rgba(245, 239, 227, 0.45);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wine-facts dd {
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.dialog-footer strong {
+  color: var(--gold-bright);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.dialog-footer a {
+  color: var(--gold-bright);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dialog-footer a:hover,
+.dialog-footer a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+@keyframes dialog-rise {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .footer-brand {
@@ -1086,11 +1302,6 @@ footer p {
     gap: 12px;
   }
 
-  .brand-lockup {
-    width: 128px;
-    height: 90px;
-  }
-
   .language-switcher {
     gap: 2px;
     padding: 3px;
@@ -1111,10 +1322,10 @@ footer p {
     margin-top: 12px;
   }
 
-  .hero-monogram {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 20px;
+  .hero-center-logo {
+    width: 205px;
+    height: 124px;
+    margin-bottom: 8px;
   }
 
   .hero h1 {
@@ -1169,9 +1380,9 @@ footer p {
     padding: 20px 19px;
   }
 
-  .menu-item-mark {
-    width: 29px;
-    height: 29px;
+  .wine-image-button {
+    width: 50px;
+    height: 70px;
   }
 
   .menu-dots {
@@ -1219,6 +1430,36 @@ footer p {
   footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .wine-dialog[open] {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .dialog-visual {
+    min-height: 300px;
+    padding: 30px;
+  }
+
+  .dialog-visual img {
+    height: 270px;
+  }
+
+  .bottle-placeholder-large {
+    transform: scale(0.65);
+  }
+
+  .dialog-content {
+    padding: 42px 24px 34px;
+  }
+
+  .wine-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .wine-facts div {
+    min-height: 82px;
   }
 }
 

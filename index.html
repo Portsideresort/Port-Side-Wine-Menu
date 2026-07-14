@@ -7,7 +7,7 @@
     <meta name="description" content="Port Side Resort Hotel wine collection in German, English, Turkish and Russian." />
     <meta property="og:title" content="Port Side Resort Hotel | Wine Menu" />
     <meta property="og:description" content="A curated wine collection in four languages." />
-    <meta property="og:image" content="assets/wine-cellar-hero.jpg" />
+    <meta property="og:image" content="assets/wine-pour-hero-v2.jpg" />
     <title>Wine Menu | Port Side Resort Hotel</title>
     <link rel="icon" href="assets/port-side-logo-transparent.png" />
     <link rel="stylesheet" href="styles.css" />
@@ -19,17 +19,13 @@
 
       <header class="hero">
         <div class="hero-media" aria-hidden="true">
-          <img src="assets/wine-cellar-hero.jpg" alt="" />
+          <img src="assets/wine-pour-hero-v2.jpg" alt="" />
           <div class="hero-scrim"></div>
         </div>
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-frame" aria-hidden="true"></div>
 
         <div class="topbar">
-          <div class="brand-lockup" aria-label="Port Side Resort Hotel">
-            <img src="assets/port-side-logo-transparent.png" alt="Port Side Resort Hotel" />
-          </div>
-
           <nav class="language-switcher" aria-label="Language selection">
             <button type="button" class="active" data-lang="de" aria-pressed="true" aria-label="Deutsch"><span>DE</span><small>Deutsch</small></button>
             <button type="button" data-lang="en" aria-pressed="false" aria-label="English"><span>EN</span><small>English</small></button>
@@ -39,7 +35,7 @@
         </div>
 
         <div class="hero-content">
-          <div class="hero-monogram" aria-hidden="true"><span>PS</span></div>
+          <img class="hero-center-logo" src="assets/port-side-logo-transparent.png" alt="Port Side Resort Hotel" />
           <p class="eyebrow">PORT SIDE RESORT HOTEL</p>
           <div class="ornament" aria-hidden="true"><span></span><i>◆</i><span></span></div>
           <h1 id="hero-title">Weinkarte</h1>
@@ -54,7 +50,7 @@
         <section class="intro-section" aria-labelledby="collection-title">
           <p class="section-kicker">PORT SIDE COLLECTION</p>
           <h2 id="collection-title">Weinkarte</h2>
-          <p id="intro-copy">Entdecken Sie unsere sorgfältig ausgewählte Doluca- und Terra-Kollektion. Alle Preise verstehen sich inklusive Mehrwertsteuer.</p>
+          <p id="intro-copy">Entdecken Sie unsere sorgfältig ausgewählte Kollektion aus der Türkei und Italien.</p>
         </section>
 
         <div class="category-wrap">
@@ -63,7 +59,6 @@
             <button type="button" data-category="red" aria-pressed="false">Rotwein</button>
             <button type="button" data-category="white" aria-pressed="false">Weißwein</button>
             <button type="button" data-category="rose" aria-pressed="false">Roséwein</button>
-            <button type="button" data-category="dessert" aria-pressed="false">Dessertwein</button>
           </nav>
         </div>
 
@@ -78,8 +73,27 @@
 
       <footer>
         <div class="footer-brand"><span>PORT SIDE</span><small>RESORT HOTEL · ★★★★★</small></div>
-        <p id="footer-copy">Genuss mit Verantwortung</p>
       </footer>
+
+      <dialog class="wine-dialog" id="wine-dialog" aria-labelledby="dialog-name">
+        <button class="dialog-close" id="dialog-close" type="button" aria-label="Schließen">×</button>
+        <div class="dialog-visual" id="dialog-visual"></div>
+        <div class="dialog-content">
+          <p class="dialog-kicker" id="dialog-kicker">Port Side Selection</p>
+          <h2 id="dialog-name"></h2>
+          <p class="dialog-category" id="dialog-category"></p>
+          <dl class="wine-facts">
+            <div><dt id="label-producer">Produzent</dt><dd id="dialog-producer"></dd></div>
+            <div><dt id="label-origin">Herkunft</dt><dd id="dialog-origin"></dd></div>
+            <div><dt id="label-grapes">Rebsorte</dt><dd id="dialog-grapes"></dd></div>
+            <div><dt id="label-bottle">Flasche</dt><dd>75 cl</dd></div>
+          </dl>
+          <div class="dialog-footer">
+            <strong id="dialog-price"></strong>
+            <a id="dialog-source" href="#" target="_blank" rel="noopener noreferrer">Produktquelle ↗</a>
+          </div>
+        </div>
+      </dialog>
     </div>
   </body>
 </html>
