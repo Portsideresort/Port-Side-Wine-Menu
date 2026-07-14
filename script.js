@@ -5,7 +5,7 @@ const translations = {
     intro: "Von den uralten Weinbergen Anatoliens über die meeresgekühlten Hänge Thrakiens bis zu den Tälern von Kalecik sowie den Hochlagen von Tokat, Kappadokien und Denizli: Unsere Auswahl zeigt, wie einheimische und internationale Rebsorten durch Boden und Klima ihren eigenen Charakter entwickeln. Ergänzt wird dieses türkische Weinbauerbe durch die traditionsreiche Weinkultur Venetiens.",
     all: "Alle Weine", white: "Weißwein", rose: "Roséwein", red: "Rotwein",
     bottle: "Flasche", wines: "Weine", close: "Schließen", producer: "Produzent",
-    origin: "Herkunft", grapes: "Rebsorten", source: "Produktquelle ↗",
+    origin: "Herkunft", grapes: "Rebsorten",
     clickForDetails: "Geschichte & Verkostung", storyTitle: "Geschichte des Weins",
     tasting: "Verkostungsprofil", service: "Servierempfehlung",
     guidanceTitle: "Eine Empfehlung gewünscht?",
@@ -17,7 +17,7 @@ const translations = {
     intro: "From Anatolia’s ancient vineyards and Thrace’s sea-cooled slopes to the Kalecik valley and the high plateaus of Tokat, Cappadocia and Denizli, our collection reveals how indigenous and international grapes gain a distinctive identity from their climate and soil. Türkiye’s rich wine heritage is complemented by the long-established winemaking tradition of Veneto.",
     all: "All wines", white: "White", rose: "Rosé", red: "Red",
     bottle: "Bottle", wines: "Wines", close: "Close", producer: "Producer",
-    origin: "Origin", grapes: "Grapes", source: "Product source ↗",
+    origin: "Origin", grapes: "Grapes",
     clickForDetails: "Story & tasting notes", storyTitle: "The wine’s story",
     tasting: "Tasting profile", service: "Serving suggestion",
     guidanceTitle: "Would you like a recommendation?",
@@ -29,7 +29,7 @@ const translations = {
     intro: "Anadolu’nun kadim bağlarından Trakya’nın deniz esintili yamaçlarına; Kalecik vadisinden Tokat, Kapadokya ve Denizli’nin yüksek platolarına uzanan seçkimiz, yerli ve uluslararası üzümlerin iklim ile topraktan kazandığı özgün karakteri yansıtır. Türkiye’nin köklü bağcılık mirası, Veneto’nun uzun yıllara dayanan İtalyan şarap geleneğiyle tamamlanır.",
     all: "Tüm şaraplar", white: "Beyaz", rose: "Roze", red: "Kırmızı",
     bottle: "Şişe", wines: "Şarap", close: "Kapat", producer: "Üretici",
-    origin: "Üretim yeri", grapes: "Üzümler", source: "Ürün kaynağı ↗",
+    origin: "Üretim yeri", grapes: "Üzümler",
     clickForDetails: "Hikâye ve tadım notları", storyTitle: "Şarabın hikâyesi",
     tasting: "Tadım profili", service: "Servis önerisi",
     guidanceTitle: "Tavsiye ister misiniz?",
@@ -41,7 +41,7 @@ const translations = {
     intro: "От древних виноградников Анатолии и склонов Фракии, охлаждаемых морским бризом, до долины Каледжик и высокогорных плато Токата, Каппадокии и Денизли — наша коллекция показывает, как местные и международные сорта обретают неповторимый характер благодаря климату и почве. Богатое наследие Турции дополнено давней винодельческой традицией Венето.",
     all: "Все вина", white: "Белое", rose: "Розовое", red: "Красное",
     bottle: "Бутылка", wines: "Вина", close: "Закрыть", producer: "Производитель",
-    origin: "Регион", grapes: "Сорта винограда", source: "Источник ↗",
+    origin: "Регион", grapes: "Сорта винограда",
     clickForDetails: "История и дегустация", storyTitle: "История вина",
     tasting: "Дегустационный профиль", service: "Рекомендация по подаче",
     guidanceTitle: "Нужна рекомендация?",
@@ -279,9 +279,6 @@ function openWineDialog(wineId) {
   byId("dialog-tasting").textContent = local(wine.notes);
   byId("dialog-service").textContent = local(wine.service || service[wine.category]);
   byId("dialog-price").textContent = `€${wine.price}`;
-  const sourceLink = byId("dialog-source");
-  sourceLink.textContent = t.source;
-  sourceLink.href = wine.source;
   const dialog = byId("wine-dialog");
   if (!dialog.open) dialog.showModal();
 }
