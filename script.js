@@ -7,7 +7,7 @@ const translations = {
     bottle: "Flasche", wines: "Weine", close: "Schließen", producer: "Produzent",
     origin: "Herkunft", grapes: "Rebsorten",
     clickForDetails: "Geschichte & Verkostung", storyTitle: "Geschichte des Weins",
-    tasting: "Verkostungsprofil", service: "Servierempfehlung",
+    tasting: "Verkostungsprofil", service: "Servierempfehlung", backToMenu: "Zurück zur Weinkarte",
     guidanceTitle: "Eine Empfehlung gewünscht?",
     guidance: "Unser Serviceteam hilft Ihnen gerne, den passenden Wein für Ihren Abend auszuwählen."
   },
@@ -19,7 +19,7 @@ const translations = {
     bottle: "Bottle", wines: "Wines", close: "Close", producer: "Producer",
     origin: "Origin", grapes: "Grapes",
     clickForDetails: "Story & tasting notes", storyTitle: "The wine’s story",
-    tasting: "Tasting profile", service: "Serving suggestion",
+    tasting: "Tasting profile", service: "Serving suggestion", backToMenu: "Back to wine menu",
     guidanceTitle: "Would you like a recommendation?",
     guidance: "Our service team will be delighted to help you choose the perfect wine for your evening."
   },
@@ -31,7 +31,7 @@ const translations = {
     bottle: "Şişe", wines: "Şarap", close: "Kapat", producer: "Üretici",
     origin: "Üretim yeri", grapes: "Üzümler",
     clickForDetails: "Hikâye ve tadım notları", storyTitle: "Şarabın hikâyesi",
-    tasting: "Tadım profili", service: "Servis önerisi",
+    tasting: "Tadım profili", service: "Servis önerisi", backToMenu: "Şarap menüsüne dön",
     guidanceTitle: "Tavsiye ister misiniz?",
     guidance: "Servis ekibimiz, geceniz için en uygun şarabı seçmenize memnuniyetle yardımcı olacaktır."
   },
@@ -43,7 +43,7 @@ const translations = {
     bottle: "Бутылка", wines: "Вина", close: "Закрыть", producer: "Производитель",
     origin: "Регион", grapes: "Сорта винограда",
     clickForDetails: "История и дегустация", storyTitle: "История вина",
-    tasting: "Дегустационный профиль", service: "Рекомендация по подаче",
+    tasting: "Дегустационный профиль", service: "Рекомендация по подаче", backToMenu: "Вернуться к винной карте",
     guidanceTitle: "Нужна рекомендация?",
     guidance: "Наша команда с удовольствием поможет вам выбрать идеальное вино для вашего вечера."
   }
@@ -217,6 +217,7 @@ const categoryOrder = ["red", "white", "rose"];
 let language = "de";
 let activeCategory = "all";
 let activeWineId = null;
+let dialogHistoryActive = false;
 const byId = (id) => document.getElementById(id);
 const local = (value) => typeof value === "string" ? value : value[language];
 
@@ -280,7 +281,23 @@ function openWineDialog(wineId) {
   byId("dialog-service").textContent = local(wine.service || service[wine.category]);
   byId("dialog-price").textContent = `€${wine.price}`;
   const dialog = byId("wine-dialog");
-  if (!dialog.open) dialog.showModal();
+  if (!dialog.open) {
+    dialog.showModal();
+    history.pushState({ ...(history.state || {}), wineDialog: true }, "", window.location.href);
+    dialogHistoryActive = true;
+  }
+}
+
+function closeWineDialog(fromHistory = false) {
+  const dialog = byId("wine-dialog");
+  if (!dialog.open) return;
+  if (!fromHistory && dialogHistoryActive) {
+    history.back();
+    return;
+  }
+  dialog.close();
+  dialogHistoryActive = false;
+  activeWineId = null;
 }
 
 function updateDialogLanguage() {
@@ -293,6 +310,7 @@ function updateDialogLanguage() {
   byId("label-story").textContent = t.storyTitle;
   byId("label-tasting").textContent = t.tasting;
   byId("label-service").textContent = t.service;
+  byId("dialog-back").textContent = t.backToMenu;
   if (activeWineId && byId("wine-dialog").open) openWineDialog(activeWineId);
 }
 
@@ -336,9 +354,17 @@ document.querySelectorAll("[data-category]").forEach((button) => {
   });
 });
 
-byId("dialog-close").addEventListener("click", () => byId("wine-dialog").close());
+byId("dialog-close").addEventListener("click", () => closeWineDialog());
+byId("dialog-back").addEventListener("click", () => closeWineDialog());
 byId("wine-dialog").addEventListener("click", (event) => {
-  if (event.target === byId("wine-dialog")) byId("wine-dialog").close();
+  if (event.target === byId("wine-dialog")) closeWineDialog();
+});
+byId("wine-dialog").addEventListener("cancel", (event) => {
+  event.preventDefault();
+  closeWineDialog();
+});
+window.addEventListener("popstate", () => {
+  if (byId("wine-dialog").open) closeWineDialog(true);
 });
 
 updateDialogLanguage();
